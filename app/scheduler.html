@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" ng-app="schedulerApp">
+	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+   		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Class Scheduler</title>
+
+		<link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	    <link href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+	    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	    <link href="../bower_components/ng-dialog/css/ngDialog.min.css" rel="stylesheet">
+	    <link href="../bower_components/ng-dialog/css/ngDialog-theme-plain.min.css" rel="stylesheet">
+	    <link href="../bower_components/ng-dialog/css/ngDialog-theme-default.min.css" rel="stylesheet">
+	    <link href="styles/mystyles.css" rel="stylesheet">
+
+	</head>
+
+	<body>
+		<nav ng-controller = "pageController">
+		  <ul class="pagination">
+		    <li>
+		      <a href="#" aria-label="Previous">
+		        <span ng-click = "selectPrev()" aria-hidden="true">&laquo;</span>
+		      </a>
+		    </li>
+		    <li ng-click = "select(1)" ng-class="{active:isSelected(1)}"><a href="#">1</a></li>
+		    <li ng-click = "select(2)" ng-class="{active:isSelected(2)}"><a href="#">2</a></li>
+		    <li ng-click = "select(3)" ng-class="{active:isSelected(3)}"><a href="#">3</a></li>
+		    <li ng-click = "select(4)" ng-class="{active:isSelected(4)}"><a href="#">4</a></li>
+		    <li ng-click = "select(5)" ng-class="{active:isSelected(5)}"><a href="#">5</a></li>
+		    <li>
+		      <a href="#" aria-label="Next">
+		        <span ng-click = "selectNext()" aria-hidden="true">&raquo;</span>
+		      </a>
+		    </li>
+		  </ul>
+		</nav>
+
+
+
+
+	    <script src="../bower_components/angular/angular.min.js"></script>
+	    <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+	    <script src="../bower_components/angular-resource/angular-resource.min.js"></script>
+	    <script src="../bower_components/ng-dialog/js/ngDialog.min.js"></script>
+	    <script src="scripts/app.js"></script>
+	    <script src="scripts/controllers.js"></script>
+	    <script src="scripts/services.js"></script>
+	</body>
+
+</html>
