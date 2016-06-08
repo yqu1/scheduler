@@ -18,29 +18,31 @@
 
 	<body>
 		<nav ng-controller = "scheduleController">
-			<nav class = "navbar navbar-default navbar-fixed-top">
-				<h1>Class Scheduler</h1>
-			  <ul class="pagination">
-			    <li>
-			      <a href="#" aria-label="Previous">
-			        <span ng-click = "selectPrev()" aria-hidden="true">&laquo;</span>
-			      </a>
-			    </li>
-			    <li ng-click = "select(1)" ng-class="{active:isSelected(1)}"><a href="#">Mon</a></li>
-			    <li ng-click = "select(2)" ng-class="{active:isSelected(2)}"><a href="#">Tue</a></li>
-			    <li ng-click = "select(3)" ng-class="{active:isSelected(3)}"><a href="#">Wed</a></li>
-			    <li ng-click = "select(4)" ng-class="{active:isSelected(4)}"><a href="#">Thu</a></li>
-			    <li ng-click = "select(5)" ng-class="{active:isSelected(5)}"><a href="#">Fri</a></li>
-			    <li>
-			      <a href="#" aria-label="Next">
-			        <span ng-click = "selectNext()" aria-hidden="true">&raquo;</span>
-			      </a>
-			    </li>
-			  </ul>
-			  		<span>
-						<button type="button" class="btn btn-default btn-sm">Add</button>
-						<button type="button" class="btn btn-default btn-sm">Delete</button>
-					</span>
+			<nav  class = "navbar navbar-default navbar-fixed-top">
+				<div id = "header">
+					<h1>Class Scheduler</h1>
+				  <ul class="pagination">
+				    <li>
+				      <a href="#" aria-label="Previous">
+				        <span ng-click = "selectPrev()" aria-hidden="true">&laquo;</span>
+				      </a>
+				    </li>
+				    <li ng-click = "select(1)" ng-class="{active:isSelected(1)}"><a href="#">Mon</a></li>
+				    <li ng-click = "select(2)" ng-class="{active:isSelected(2)}"><a href="#">Tue</a></li>
+				    <li ng-click = "select(3)" ng-class="{active:isSelected(3)}"><a href="#">Wed</a></li>
+				    <li ng-click = "select(4)" ng-class="{active:isSelected(4)}"><a href="#">Thu</a></li>
+				    <li ng-click = "select(5)" ng-class="{active:isSelected(5)}"><a href="#">Fri</a></li>
+				    <li>
+				      <a href="#" aria-label="Next">
+				        <span ng-click = "selectNext()" aria-hidden="true">&raquo;</span>
+				      </a>
+				    </li>
+				  </ul>
+				  		<span>
+							<button type="button" class="btn btn-default btn-sm">Add</button>
+							<button type="button" class="btn btn-default btn-sm">Delete</button>
+						</span>
+				</div>
 			 </nav>
 
 		  		<div class = "schedules">
