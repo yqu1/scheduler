@@ -32,6 +32,20 @@ angular.module('schedulerApp')
 				time: "5:00 - 6:00",
 				instructor: "Qu Yaoxian",
 				location: "your mom's vagina"
+			},
+			{
+				day:"Mon",
+				name: "CS",
+				time: "5:00 - 6:00",
+				instructor: "Qu Yaoxian",
+				location: "your mom's vagina"
+			},
+			{
+				day:"Mon",
+				name: "CS",
+				time: "5:00 - 6:00",
+				instructor: "Qu Yaoxian",
+				location: "your mom's vagina"
 			}
 	]
 
