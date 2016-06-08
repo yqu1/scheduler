@@ -18,7 +18,7 @@
 
 	<body>
 		<h1>Class Scheduler</h1>
-		<nav ng-controller = "pageController">
+		<nav ng-controller = "scheduleController">
 		  <ul class="pagination">
 		    <li>
 		      <a href="#" aria-label="Previous">
@@ -36,6 +36,20 @@
 		      </a>
 		    </li>
 		  </ul>
+
+		  		<div class = "schedules">
+
+					<ul class="list-group">
+					  <li class="list-group-item" ng-repeat = "class in schedules | filter:filtText">
+					  	
+					  	 <h2>{{class.name}}</h2>
+					  	 <p>{{class.time}}</p>
+					  	 <p>{{class.instructor}}</p>
+					  	 <p>{{class.location}}</p>
+					  </li>
+					</ul>
+
+				</div>
 		</nav>
 
 		<span>
