@@ -9,7 +9,9 @@ angular.module('schedulerApp', [])
 
 	$scope.select = function(setTab){
 		$scope.tab = setTab;
+	}
 
+	$scope.isSelected = function(checkTab){
 		if($scope.tab === 1) {
 			$scope.filtText = "Mon";
 		}
@@ -25,9 +27,6 @@ angular.module('schedulerApp', [])
 		if($scope.tab === 5) {
 			$scope.filtText = "Fri";
 		}
-	}
-
-	$scope.isSelected = function(checkTab){
 		return ($scope.tab === checkTab);
 	}
 
