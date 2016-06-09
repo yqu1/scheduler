@@ -18,4 +18,9 @@ scheduler_plugin
 	-bower_components -- contains bootstrap moduels
 
 	-manifest.json -- configuration for setting up chrome extension
-	
+
+	More Functionalities:
+
+	1. ability to schedule homework and exams as far as next week
+	2. ability to rate class -- need to migrate to cloud database or sth
+
