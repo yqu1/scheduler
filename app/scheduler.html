@@ -39,9 +39,38 @@
 				    </li>
 				  </ul>
 				  		<span>
-							<button type="button" class="btn btn-default btn-sm">Add</button>
+							<button type="button" ng-click = "show()" class="btn btn-default btn-sm">Add</button>
 							<button type="button" class="btn btn-default btn-sm">Delete</button>
 						</span>
+
+							<form ng-show = "showForm">
+							  <fieldset class="form-group">
+							    <label for="formGroupExampleInput">Class Name</label>
+							    <input type="text" ng-model = "newClass.name" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+							  </fieldset>
+							  <fieldset class="form-group">
+							    <label for="formGroupExampleInput">Day</label>
+							    <input type="text" ng-model = "newClass.day" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+							  </fieldset>
+							  <fieldset class="form-group">
+							    <label for="formGroupExampleInput2">Time</label>
+							    <input type="text" ng-model = "newClass.time" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+							  </fieldset>
+							  <fieldset class="form-group">
+							    <label for="formGroupExampleInput2">Instructor</label>
+							    <input type="text" ng-model = "newClass.instructor" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+							  </fieldset>
+							  <fieldset class="form-group">
+							    <label for="formGroupExampleInput2">Location</label>
+							    <input type="text" ng-model = "newClass.location" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+							  </fieldset>
+							  <span>
+							  	<button type="submit" class="btn btn-primary" ng-click = "submit()">Submit</button>
+							  	<button type="close" class="btn btn-primary" ng-click = "close()">Close</button>
+							</span>
+							</form>
+	
+
 				</div>
 			 </nav>
 

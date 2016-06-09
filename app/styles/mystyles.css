@@ -2,6 +2,7 @@ body {
     min-width:350px;
     align: center;
     padding-top: 150px;
+    min-height: 800px;
 }
 
 .pagination {
@@ -10,5 +11,5 @@ body {
 }
 
 #header {
-	margin-left: 3%;
+	margin-left: 4%;
 }
