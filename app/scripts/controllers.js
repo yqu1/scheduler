@@ -75,8 +75,9 @@ angular.module('schedulerApp', [])
 			};
 		}
 
-		$scope.submit = function(){
+		$scope.submit = function(day){
 			scheduleService.getSchedules(function(obj) {
+				$scope.newClass.day = day;
 				obj.data.push($scope.newClass);
 				chrome.storage.sync.set(obj);
 					$scope.newClass = {

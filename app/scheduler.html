@@ -49,10 +49,6 @@
 							    <input type="text" ng-model = "newClass.name" class="form-control" id="formGroupExampleInput" placeholder="some class">
 							  </fieldset>
 							  <fieldset class="form-group">
-							    <label for="formGroupExampleInput">Day</label>
-							    <input type="text" ng-model = "newClass.day" class="form-control" id="formGroupExampleInput" placeholder="Mon/Tue/Wed/Thu/Fri">
-							  </fieldset>
-							  <fieldset class="form-group">
 							    <label for="formGroupExampleInput2">Time</label>
 							    <input type="text" ng-model = "newClass.time" class="form-control" id="formGroupExampleInput2" placeholder="start - end">
 							  </fieldset>
@@ -65,7 +61,7 @@
 							    <input type="text" ng-model = "newClass.location" class="form-control" id="formGroupExampleInput2" placeholder="some location">
 							  </fieldset>
 							  <span>
-							  	<button type="submit" class="btn btn-primary" ng-click = "submit()">Submit</button>
+							  	<button type="submit" class="btn btn-primary" ng-click = "submit(filtText)">Submit</button>
 							</span>
 							</form>
 	
