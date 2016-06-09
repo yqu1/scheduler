@@ -3,6 +3,7 @@ body {
     align: center;
     padding-top: 150px;
     min-height: 800px;
+    background-color: #48CFAD;
 }
 
 .pagination {
@@ -12,4 +13,12 @@ body {
 
 #header {
 	margin-left: 4%;
+}
+
+.list-group-item {
+	background-color: #37BC98;
+}
+
+.navbar {
+	background-color: #22A7F0;
 }
