@@ -2,7 +2,7 @@
 
 structure:
 
-scheduler_plugin
+-scheduler_plugin
 
 	-app
 
