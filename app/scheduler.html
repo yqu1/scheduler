@@ -39,8 +39,8 @@
 				    </li>
 				  </ul>
 				  		<span>
-							<button type="button" ng-click = "show()" class="btn btn-default btn-sm">Add</button>
-							<button type="button" ng-click = "dShow()" class="btn btn-default btn-sm">Delete</button>
+							<button type="button" ng-click = "show()" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span></button>
+							<button type="button" ng-click = "dShow()" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-minus"></span></button>
 						</span>
 
 							<form ng-show = "showForm">
@@ -79,7 +79,7 @@
 					  <li class="list-group-item" ng-repeat = "class in schedules | filter:filtText">
 					  	
 					  	 <span>
-					  	 	<button ng-show = "showDelete" type="delete" class="btn btn-primary" ng-click = "delete(class.name)">Delete</button>
+					  	 	<button ng-show = "showDelete" type="delete" class="btn btn-primary" ng-click = "delete(class.name)"><span class="glyphicon glyphicon-minus"></button>
 					  	 	<h2>{{class.name}}</h2>
 					  	 </span>
 					  	 <p>Time: {{class.time}}</p>
