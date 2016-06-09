@@ -7,7 +7,7 @@
 
   "browser_action": {
     "default_icon": "app/images/icon.png",
-    "default_popup": "app/scheduler.html"
+    "default_popup": "app/index.html"
   },
   "permissions": [
     "activeTab",

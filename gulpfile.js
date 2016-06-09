@@ -75,7 +75,7 @@ gulp.task('browser-sync', ['default'], function () {
    browserSync.init(files, {
       server: {
          baseDir: "dist",
-         index: "scheduler.html"
+         index: "index.html"
       }
    });  
     

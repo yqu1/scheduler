@@ -2,7 +2,7 @@
   "name": "scheduler",
   "version": "1.0.0",
   "description": "class scheduler chrome plugin",
-  "main": "scheduler.html",
+  "main": "index.html",
   "moduleType": [],
   "keywords": [
     "scheduler"

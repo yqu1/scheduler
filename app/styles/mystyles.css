@@ -19,3 +19,6 @@ body {
 	background-color: #37BC98;
 }
 
+.navbar ul {
+	display: inline-block;
+}
