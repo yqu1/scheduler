@@ -25,13 +25,12 @@ angular.module('schedulerApp', [])
 	}
 
 	$scope.show = function(){
-		$scope.showForm = true;
-		$scope.showDelete = false;
+		$scope.showForm = !$scope.showForm;
+		if($scope.showForm === true){
+			$scope.showDelete = false;
+		}
 	}
 
-	$scope.close = function(){
-		$scope.showForm = false;
-	}
 
 	scheduleService.getSchedules(function(obj){
 		$scope.schedules = obj.data;

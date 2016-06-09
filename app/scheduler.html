@@ -43,30 +43,29 @@
 							<button type="button" ng-click = "dShow()" class="btn btn-default btn-sm">Delete</button>
 						</span>
 
-							<form ng-show = "showForm && !showDelete">
+							<form ng-show = "showForm">
 							  <fieldset class="form-group">
 							    <label for="formGroupExampleInput">Class Name</label>
-							    <input type="text" ng-model = "newClass.name" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+							    <input type="text" ng-model = "newClass.name" class="form-control" id="formGroupExampleInput" placeholder="some class">
 							  </fieldset>
 							  <fieldset class="form-group">
 							    <label for="formGroupExampleInput">Day</label>
-							    <input type="text" ng-model = "newClass.day" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+							    <input type="text" ng-model = "newClass.day" class="form-control" id="formGroupExampleInput" placeholder="Mon/Tue/Wed/Thu/Fri">
 							  </fieldset>
 							  <fieldset class="form-group">
 							    <label for="formGroupExampleInput2">Time</label>
-							    <input type="text" ng-model = "newClass.time" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+							    <input type="text" ng-model = "newClass.time" class="form-control" id="formGroupExampleInput2" placeholder="start - end">
 							  </fieldset>
 							  <fieldset class="form-group">
 							    <label for="formGroupExampleInput2">Instructor</label>
-							    <input type="text" ng-model = "newClass.instructor" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+							    <input type="text" ng-model = "newClass.instructor" class="form-control" id="formGroupExampleInput2" placeholder="some instructor">
 							  </fieldset>
 							  <fieldset class="form-group">
 							    <label for="formGroupExampleInput2">Location</label>
-							    <input type="text" ng-model = "newClass.location" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+							    <input type="text" ng-model = "newClass.location" class="form-control" id="formGroupExampleInput2" placeholder="some location">
 							  </fieldset>
 							  <span>
 							  	<button type="submit" class="btn btn-primary" ng-click = "submit()">Submit</button>
-							  	<button type="close" class="btn btn-primary" ng-click = "close()">Close</button>
 							</span>
 							</form>
 	
@@ -80,7 +79,7 @@
 					  <li class="list-group-item" ng-repeat = "class in schedules | filter:filtText">
 					  	
 					  	 <span>
-					  	 	<button ng-show = "showDelete && !showForm" type="delete" class="btn btn-primary" ng-click = "delete(class.name)">Delete</button>
+					  	 	<button ng-show = "showDelete" type="delete" class="btn btn-primary" ng-click = "delete(class.name)">Delete</button>
 					  	 	<h2>{{class.name}}</h2>
 					  	 </span>
 					  	 <p>Time: {{class.time}}</p>
