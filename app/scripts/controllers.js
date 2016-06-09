@@ -7,6 +7,15 @@ angular.module('schedulerApp', [])
 	$scope.filtText = "Mon";
 	$scope.schedules = [];
 	$scope.showForm = false;
+	$scope.showDelete = false;
+
+	$scope.dShow = function(){
+		$scope.showDelete = !$scope.showDelete;
+		if($scope.showDelete === true) {
+			$scope.showForm = false;
+		}
+	}
+
 	$scope.newClass = {
 		day: "",
 		instructor: "",
@@ -17,6 +26,7 @@ angular.module('schedulerApp', [])
 
 	$scope.show = function(){
 		$scope.showForm = true;
+		$scope.showDelete = false;
 	}
 
 	$scope.close = function(){
@@ -81,6 +91,16 @@ angular.module('schedulerApp', [])
 
 			$scope.showForm = false;
 			
+		}
+
+		$scope.delete = function(name){
+			scheduleService.getSchedules(function(obj) {
+				var removed = obj.data.filter(function(item){
+					return item.name !== name;
+				})
+				obj.data = removed;
+				chrome.storage.sync.set(obj);
+			})
 		}
 
 		chrome.storage.onChanged.addListener(function(changes, namespace){

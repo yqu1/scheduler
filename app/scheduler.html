@@ -40,10 +40,10 @@
 				  </ul>
 				  		<span>
 							<button type="button" ng-click = "show()" class="btn btn-default btn-sm">Add</button>
-							<button type="button" class="btn btn-default btn-sm">Delete</button>
+							<button type="button" ng-click = "dShow()" class="btn btn-default btn-sm">Delete</button>
 						</span>
 
-							<form ng-show = "showForm">
+							<form ng-show = "showForm && !showDelete">
 							  <fieldset class="form-group">
 							    <label for="formGroupExampleInput">Class Name</label>
 							    <input type="text" ng-model = "newClass.name" class="form-control" id="formGroupExampleInput" placeholder="Example input">
@@ -79,7 +79,10 @@
 					<ul class="list-group">
 					  <li class="list-group-item" ng-repeat = "class in schedules | filter:filtText">
 					  	
-					  	 <h2>{{class.name}}</h2>
+					  	 <span>
+					  	 	<button ng-show = "showDelete && !showForm" type="delete" class="btn btn-primary" ng-click = "delete(class.name)">Delete</button>
+					  	 	<h2>{{class.name}}</h2>
+					  	 </span>
 					  	 <p>Time: {{class.time}}</p>
 					  	 <p>Instructor: {{class.instructor}}</p>
 					  	 <p>Location: {{class.location}}</p>
