@@ -14,14 +14,14 @@ structure:
 	-scripts
 		-app.js -- supposedly router but nothing yet
 		-controllers.js -- connect data with view
-		-services.js -- supposedly code for pulling data from some database but for now just included the data directly
+		-services.js -- pull code from chrome.storage
 
 	-styles
 		-mystyles.css
 
 	-views -- for now nothing
 
-	-bower_components -- contains bootstrap moduels
+	-bower_components -- contains bootstrap modules
 
 	-manifest.json -- configuration for setting up chrome extension
 
