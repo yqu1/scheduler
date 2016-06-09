@@ -34,4 +34,6 @@ structure:
 
 	1. ability to schedule homework and exams as far as next week
 	2. ability to rate class -- need to migrate to cloud database or sth
+		-ability to search for class according to subject/teacher and add/rate class
+		-ability to add personal favourite to the bigger database
 
