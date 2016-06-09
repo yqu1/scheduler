@@ -1,5 +1,10 @@
 # scheduler
 
+Usage: 
+
+Clone the code and include the directory directly through chrome/window/extension/load extensions
+
+
 structure:
 
 -scheduler_plugin
