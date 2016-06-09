@@ -1,12 +1,14 @@
+		<nav>
 			<nav  class = "navbar navbar-light navbar-fixed-top" style="background-color: #e3f2fd;">
 				<div id = "header">
+					<h1>Class Scheduler</h1>
 				  <ul class="pagination">
 				    <li>
 				      <a aria-label="Previous">
 				        <span ng-click = "selectPrev()" aria-hidden="true">&laquo;</span>
 				      </a>
 				    </li>
-				    <li ng-click = "select(1)" ng-class="{active:isSelected(1)}"><a >Mon</a></li>
+				    <li ng-click = "select(1)" ng-class="{active:isSelected(1)}"><a>Mon</a></li>
 				    <li ng-click = "select(2)" ng-class="{active:isSelected(2)}"><a>Tue</a></li>
 				    <li ng-click = "select(3)" ng-class="{active:isSelected(3)}"><a>Wed</a></li>
 				    <li ng-click = "select(4)" ng-class="{active:isSelected(4)}"><a>Thu</a></li>
@@ -46,8 +48,8 @@
 	
 
 				</div>
+			 </nav>
 
-				
 		  		<div class = "schedules">
 
 					<ul class="list-group">
@@ -65,4 +67,4 @@
 
 				</div>
 
-			 </nav>
+		</nav>
