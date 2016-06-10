@@ -1,8 +1,12 @@
 # scheduler
 
-Usage: 
+Install: 
 
 Clone the code and include the directory directly through chrome/window/extension/load extensions
+
+Usage:
+
+In this week view, + sign shows a form to add class, the class is automatically added to the day specified in the top tab. on clicking - sign shows a - button on every class, clicking on the - buttons delete the class. 
 
 
 structure:
