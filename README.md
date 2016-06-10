@@ -11,7 +11,7 @@ structure:
 
 	-app
 
-	-scheduler.html -- index page
+	-index.html -- index page
 
 	-images
 		-icon.png -- icon shown on chrome extension
@@ -24,7 +24,11 @@ structure:
 	-styles
 		-mystyles.css
 
-	-views -- for now nothing
+	-views
+
+		-main view: display all classes
+		-week view: display everyday class in the week
+		-favourite view: display favourite class
 
 	-bower_components -- contains bootstrap modules
 
