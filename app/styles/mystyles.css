@@ -1,7 +1,7 @@
 body {
     min-width:350px;
     align: center;
-    padding-top: 150px;
+    padding-top: 75px;
     min-height: 800px;
     background-color: #48CFAD;
 }
@@ -18,7 +18,31 @@ body {
 .list-group-item {
 	background-color: #37BC98;
 }
+/*
+#week {
+	margin-top: 50px;
+}*/
 
 .navbar ul {
 	display: inline-block;
+}
+
+.navbar-default {
+	background-color: #e3f2fd;
+}
+
+.glyphicon-plus {
+	z-index: 3; position:relative;
+}
+
+.glyphicon-minus{
+	z-index: 3; position:relative;
+}
+
+.rightButtom {
+	 position: fixed; bottom: 0px; right: 0px; 
+}
+
+.leftButtom {
+	position: fixed; bottom: 0px; left: 0px; 
 }

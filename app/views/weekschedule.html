@@ -1,7 +1,6 @@
 		<nav>
-			<nav  class = "navbar navbar-light navbar-fixed-top" style="background-color: #e3f2fd;">
+			<nav id = "week" class = "navbar navbar-default navbar-fixed-top">
 				<div id = "header">
-					<h1>Class Scheduler</h1>
 				  <ul class="pagination">
 				    <li>
 				      <a aria-label="Previous">
@@ -21,7 +20,7 @@
 				  </ul>
 				  		<span>
 							<button type="button" ng-click = "show()" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span></button>
-							<button type="button" ng-click = "dShow()" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-minus"></span></button>
+							<button type="button" ng-click = "dShow()" class="btn btn-default btn-sm pull-right"><span class="glyphicon glyphicon-minus"></span></button>
 						</span>
 
 							<form ng-show = "showForm">
@@ -68,3 +67,5 @@
 				</div>
 
 		</nav>
+
+		    <button type = "button" class = "leftButtom btn btn-default btn-sm"><a ui-sref = "app">All Class</a></button>

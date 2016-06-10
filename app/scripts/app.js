@@ -19,6 +19,9 @@ angular.module('schedulerApp', ['ui.router', 'ngDialog', 'ngResource'])
 		.state('app.weekschedule', {
 			url: 'weekschedule',
 			views: {
+				'header@': {
+					templateUrl: 'views/weekheader.html'
+				},
 				'content@': {
 					templateUrl: 'views/weekschedule.html',
 					controller: 'scheduleController'
