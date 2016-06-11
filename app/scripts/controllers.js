@@ -24,11 +24,6 @@ angular.module('schedulerApp')
 			var dayString = "";
 			// var toSchedule = [];
 
-
-			if(typeof obj.allClass === "undefined") {
-				obj.allClass = [];
-			}
-
 			if(typeof obj.data === "undefined") {
 				obj.data = [];
 			}
@@ -53,9 +48,9 @@ angular.module('schedulerApp')
 
 			$scope.newClass.day = dayString;
 
-			obj.allClass.push($scope.newClass);
+			obj.data.push($scope.newClass);
 			// for(var item in toSchedule) {
-				obj.data.push($scope.newClass.day.split(" "));
+				// obj.data.push($scope.newClass.day.split(" "));
 			// }
 			chrome.storage.sync.set(obj);
 				$scope.newClass = {
@@ -82,7 +77,7 @@ angular.module('schedulerApp')
 
 	$scope.dshow = function() {
 		controlService.dshow();
-	}
+	}		
 }])
 
 .controller('bodyController', ['$scope', 'scheduleService', 'controlService', function($scope, scheduleService, controlService) {
@@ -96,27 +91,27 @@ angular.module('schedulerApp')
 
 	$scope.delete = function(name) {
 			scheduleService.getSchedules(function(obj) {
-				var removed = obj.allClass.filter(function(item){
+				var removed = obj.data.filter(function(item){
 					return item.name !== name;
 				})
-				obj.allClass = removed;
+				obj.data = removed;
 				chrome.storage.sync.set(obj);
 			})
 	}
 
 	scheduleService.getSchedules(function(obj){
-			chrome.storage.sync.clear();
-		if(typeof obj.allClass !== "undefined") {
-			$scope.schedules = obj.allClass;
+			// chrome.storage.sync.clear();
+		if(typeof obj.data !== "undefined") {
+			$scope.schedules = obj.data;
 			$scope.$apply();
 		}
 	})
 
 
 	chrome.storage.onChanged.addListener(function(changes, namespace) {
-			console.log(changes.allClass.newValue)
-			if(typeof changes.allClass.newValue !== "undefined") {
-				$scope.schedules = changes.allClass.newValue;
+			console.log(changes.data.newValue)
+			if(typeof changes.data.newValue !== "undefined") {
+				$scope.schedules = changes.data.newValue;
 				$scope.$apply();
 			}
 	})
@@ -126,30 +121,8 @@ angular.module('schedulerApp')
 	$scope.tab = 1;
 	$scope.filtText = "Mon";
 	$scope.schedules = [];
-	$scope.showForm = false;
-	$scope.showDelete = false;
 
-	$scope.dShow = function(){
-		$scope.showDelete = !$scope.showDelete;
-		if($scope.showDelete === true) {
-			$scope.showForm = false;
-		}
-	}
 
-	$scope.newClass = {
-		day: "",
-		instructor: "",
-		location: "",
-		name: "",
-		time: ""
-	}
-
-	$scope.show = function(){
-		$scope.showForm = !$scope.showForm;
-		if($scope.showForm === true){
-			$scope.showDelete = false;
-		}
-	}
 
 
 	scheduleService.getSchedules(function(obj){
@@ -164,10 +137,21 @@ angular.module('schedulerApp')
 		// 		}
 		// 		$scope.$apply();
 		// 	}
+		for(var item in obj.data) {
+			obj.data[item].day = obj.data[item].day.split(" ");
+			for(var day in obj.data[item].day) {
+				var temp = {};
+				angular.copy(obj.data[item], temp);
+				temp.day = obj.data[item].day[day];
+				$scope.schedules.push(temp);
+			}
+		}
 		console.log(obj.data);
-		$scope.schedules = obj.data;
-		$scope.$apply();
+
+		// $scope.schedules = obj.data;
+		// $scope.$apply();
 		// console.log(obj);
+		$scope.$apply();
 
 	})
 
@@ -207,40 +191,6 @@ angular.module('schedulerApp')
 			};
 		}
 
-		$scope.submit = function(day){
-			scheduleService.getSchedules(function(obj) {
-				$scope.newClass.day = day;
-				obj.data.push($scope.newClass);
-				chrome.storage.sync.set(obj);
-					$scope.newClass = {
-						day: "",
-						instructor: "",
-						location: "",
-						name: "",
-						time: ""
-					}
-			})
-
-			$scope.showForm = false;
-			
-		}
-
-		$scope.delete = function(name){
-			scheduleService.getSchedules(function(obj) {
-				var removed = obj.data.filter(function(item){
-					return item.name !== name;
-				})
-				obj.data = removed;
-				chrome.storage.sync.set(obj);
-			})
-		}
-
-		chrome.storage.onChanged.addListener(function(changes, namespace){
-			if(typeof changes.data.newValue !== "undefined") {
-				$scope.schedules = changes.data.newValue;
-				$scope.$apply();
-			}
-		})
 
 
 }])
