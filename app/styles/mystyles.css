@@ -41,8 +41,18 @@ body {
 
 .rightButtom {
 	 position: fixed; bottom: 0px; right: 0px; 
+	 z-index: 3;
 }
 
 .leftButtom {
 	position: fixed; bottom: 0px; left: 0px; 
+	z-index: 3;
+}
+
+.navbar-text {
+	text-align: center;
+}
+
+.classes {
+	padding-top: 15px;
 }

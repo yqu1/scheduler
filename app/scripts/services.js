@@ -12,3 +12,10 @@ angular.module('schedulerApp')
 
 
 })
+
+.service('controlService', function() {
+	this.showDelete = false;
+	this.dshow = function() {
+		this.showDelete = !this.showDelete;
+	}
+})

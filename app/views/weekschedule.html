@@ -55,7 +55,7 @@
 					  <li class="list-group-item" ng-repeat = "class in schedules | filter:filtText">
 					  	
 					  	 <span>
-					  	 	<button ng-show = "showDelete" type="delete" class="btn btn-primary" ng-click = "delete(class.name)"><span class="glyphicon glyphicon-minus"></button>
+					  	 	<button ng-show = "showDelete" type="delete" class="btn btn-primary delete" ng-click = "delete(class.name)"><span class="glyphicon glyphicon-minus"></button>
 					  	 	<h2>{{class.name}}</h2>
 					  	 </span>
 					  	 <p>Time: {{class.time}}</p>

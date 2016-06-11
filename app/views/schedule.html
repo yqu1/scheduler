@@ -1,3 +1,16 @@
-<div>
+<div class = "classes">
+	<ul class="list-group">
+					  <li class="list-group-item" ng-repeat = "class in schedules ">
+					  	
+					  	 <span>
+					  	 	<button ng-show = "showDelete" type="delete" class="btn btn-primary" ng-click = "delete(class.name)"><span class="glyphicon glyphicon-minus"></button>
+					  	 	<h2>{{class.name}}</h2>
+					  	 </span>
+					  	 <p>Days: {{class.day}}</p>
+					  	 <p>Time: {{class.time}}</p>
+					  	 <p>Instructor: {{class.instructor}}</p>
+					  	 <p>Location: {{class.location}}</p>
+					  </li>
+	</ul>
 
 </div>

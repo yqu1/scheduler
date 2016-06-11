@@ -9,9 +9,11 @@ angular.module('schedulerApp', ['ui.router', 'ngDialog', 'ngResource'])
 			views: {
 				'header': {
 					templateUrl: 'views/header.html',
+					controller: 'allController'
 				},
 				'content': {
 					templateUrl: 'views/schedule.html',
+					controller: 'bodyController'
 				}
 			}
 		})
