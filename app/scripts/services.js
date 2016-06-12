@@ -19,3 +19,25 @@ angular.module('schedulerApp')
 		this.showDelete = !this.showDelete;
 	}
 })
+
+.service('ratingService', ['$http', function($http) {
+	this.getProfessorExtension = function(searchPageURL, professorName, callback){
+
+	    $http.get(searchPageURL).then(function(response) {
+	    	callback(response.data)
+	    });
+
+	}
+
+	this.findRatings = function(professorPageURL, professorName, callback) {
+
+	    $http.get(professorPageURL).then(function(response) {
+	    	callback(response.data);
+
+	    })
+
+	}
+
+
+
+}])

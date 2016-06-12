@@ -1,6 +1,9 @@
 'use strict';
 
 angular.module('schedulerApp', ['ui.router', 'ngDialog', 'ngResource'])
+.config(function($httpProvider) {
+	$httpProvider.useApplyAsync(true);
+})
 .config(function($stateProvider, $urlRouterProvider) {
 	$stateProvider
 

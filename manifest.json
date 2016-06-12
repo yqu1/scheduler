@@ -11,6 +11,10 @@
   },
   "permissions": [
     "activeTab",
-    "storage"
+    "storage",
+    "http://www.ratemyprofessors.com/*"
+  ],
+    "web_accessible_resources": [
+    "http://www.ratemyprofessors.com/*"
   ]
 }

@@ -18,11 +18,12 @@ angular.module('schedulerApp')
 		location: ""
 	}
 
+
+
 	$scope.submit = function(){
 		scheduleService.getSchedules(function(obj){
 
 			var dayString = "";
-			// var toSchedule = [];
 
 			if(typeof obj.data === "undefined") {
 				obj.data = [];
@@ -30,17 +31,6 @@ angular.module('schedulerApp')
 
 			angular.forEach($scope.newClass.day, function(value, key) {
 				if(value === true) {
-					// scheduleService.getSchedules(function(newObj) {
-					// 		var toSchedule = $scope.newClass;
-					// 		toSchedule.day = key;
-					// 		console.log($scope.newClass)
-					// 		newObj.data.push(toSchedule);
-					// 		chrome.storage.sync.set(newObj);
-					// })
-					// var tempClass = {};
-					// tempClass = $scope.newClass;
-					// tempClass.day = key;
-					// toSchedule.push(tempClass);
 
 					dayString = dayString + " " + key;
 				}
@@ -49,9 +39,6 @@ angular.module('schedulerApp')
 			$scope.newClass.day = dayString;
 
 			obj.data.push($scope.newClass);
-			// for(var item in toSchedule) {
-				// obj.data.push($scope.newClass.day.split(" "));
-			// }
 			chrome.storage.sync.set(obj);
 				$scope.newClass = {
 					name: "",
@@ -80,14 +67,91 @@ angular.module('schedulerApp')
 	}		
 }])
 
-.controller('bodyController', ['$scope', 'scheduleService', 'controlService', function($scope, scheduleService, controlService) {
+.controller('bodyController', ['$scope', 'scheduleService', 'controlService', 'ratingService', function($scope, scheduleService, controlService, ratingService) {
 	
 	$scope.schedules = [];
 	$scope.showDelete = false;
 
+	$scope.showRating = false
+
+
+
+
+	 function getRating(name, completed, callback) {
+	 	completed.count += 1;
+	 	var rmpsearch = 'http://www.ratemyprofessors.com/search.jsp?queryBy=teacherName&schoolName=college+of+william+and+mary&queryoption=HEADER&query=PROFESSORNAME&facetSearch=true';
+		 var URLprofessorName = name.replace(/ /g,'+').replace(/,/g,'');
+		 rmpsearch = rmpsearch.replace('PROFESSORNAME',URLprofessorName);
+		 ratingService.getProfessorExtension(rmpsearch, name, function(data) {
+		 	var responseXML, ratings;
+
+		 	try {
+		 		responseXML = data;
+		 		var professorURLExtension = $(responseXML).find('.listing:first').find('a:first').attr('href');
+		 	}
+
+		 	catch(err) {
+		 		console.log(err);
+		 		var professorURLExtension = null;
+		 	}
+
+		 	if(typeof professorURLExtension === "undefined") {
+		 		callback(null, name);
+		 		return;
+		 	}
+
+		 	// console.log(professorURLExtension);
+
+		 	var professorPageURL = 'http://www.ratemyprofessors.com' + professorURLExtension;
+
+		 	ratingService.findRatings(professorPageURL, name, function(res) {
+		 		var rating = {
+		    		overall: -1,
+		    		takeAgain: -1,
+		    		difficulty: -1,
+
+		    	}
+
+		    	var responseXML;
+
+		    	try {
+		    		responseXML = res;
+
+		    		rating.overall = $(responseXML).find('.breakdown-header:eq(0)').find('.grade').html().replace(/\s/g, "");
+		            rating.takeAgain = $(responseXML).find('.breakdown-header:eq(1)').find('.grade:eq(0)').html().replace(/\s/g, "");
+		            rating.difficulty = $(responseXML).find('.breakdown-header:eq(1)').find('.grade:eq(1)').html().replace(/\s/g, "");
+
+
+		           	callback(rating, name);
+		    		
+
+		    	}
+
+
+		    	catch(err) {
+		    		callback(null, name);
+		    	}
+		 	})
+		 });
+	}
+
+	 // $scope.getRating = function(professorName) {
+
+	 // 	var rating = ratingService.getProfessorRating(professorName);
+
+	 // 	if(typeof rating !== 'undefined') {
+	 // 		console.log(rating);
+	 // 		$scope.rating = rating;
+	 // 		$scope.showRating = true;
+	 // 	}
+
+
+	 // }
+
 	$scope.$watch(function() { return controlService.showDelete }, function(nVal, oVal) {
 		$scope.showDelete = nVal;
 	})
+
 
 	$scope.delete = function(name) {
 			scheduleService.getSchedules(function(obj) {
@@ -102,7 +166,55 @@ angular.module('schedulerApp')
 	scheduleService.getSchedules(function(obj){
 			// chrome.storage.sync.clear();
 		if(typeof obj.data !== "undefined") {
+			var rating = {
+	    		overall: "Not available",
+	    		takeAgain: "Not available",
+	    		difficulty: "Not available"
+	    	};
 			$scope.schedules = obj.data;
+			var completed = {count: 0};
+
+			for(var i = 0; i < $scope.schedules.length; i++) {
+				console.log($scope.schedules[i])
+				getRating($scope.schedules[completed.count].instructor, completed, function(val, name) {
+					console.log(name);
+					if(val === null) {
+						for(var item in $scope.schedules) {
+							if($scope.schedules[item].instructor === name) {
+									$scope.schedules[item].rating = rating;
+								}
+						}
+					}
+					else {
+						for(var item in $scope.schedules) {
+							if($scope.schedules[item].instructor === name) {
+									$scope.schedules[item].rating = val;
+								}
+						}
+					}
+				})
+			}
+
+			// for(var item in $scope.schedules){
+			// 	getRating($scope.schedules[item].instructor,function(val) {
+			// 		console.log(val);
+			// 						console.log($scope.schedules[item]);
+			// 		if(typeof val === 'undefined') {
+			// 			$scope.schedules[item].rating = rating;
+			// 		}
+			// 		else {
+			// 			$scope.schedules[item].rating = val;
+			// 		}
+			// 		completed++;
+			// 		// if(completed === $scope.schedules.length - 1) {
+			// 		// 		$scope.$apply();
+			// 		// 	}
+			// 				// $scope.$applyAsync();
+			// 	})
+
+
+			// }
+
 			$scope.$apply();
 		}
 	})
@@ -111,7 +223,34 @@ angular.module('schedulerApp')
 	chrome.storage.onChanged.addListener(function(changes, namespace) {
 			console.log(changes.data.newValue)
 			if(typeof changes.data.newValue !== "undefined") {
+							var rating = {
+					    		overall: "Not available",
+					    		takeAgain: "Not available",
+					    		difficulty: "Not available"
+					    	};
 				$scope.schedules = changes.data.newValue;
+				var completed = {count: 0};
+
+				for(var i = 0; i < $scope.schedules.length; i++) {
+					console.log($scope.schedules[i])
+					getRating($scope.schedules[completed.count].instructor, completed, function(val, name) {
+						console.log(name);
+						if(val === null) {
+							for(var item in $scope.schedules) {
+								if($scope.schedules[item].instructor === name) {
+										$scope.schedules[item].rating = rating;
+									}
+							}
+						}
+						else {
+							for(var item in $scope.schedules) {
+								if($scope.schedules[item].instructor === name) {
+										$scope.schedules[item].rating = val;
+									}
+							}
+						}
+					})
+				}
 				$scope.$apply();
 			}
 	})
@@ -126,17 +265,7 @@ angular.module('schedulerApp')
 
 
 	scheduleService.getSchedules(function(obj){
-		// if(typeof obj.data !== "undefined") {
-		// 		var days = obj.data.day.split(" ");
-		// 		for(d in days) {
-		// 			var temp = {};
-		// 			angular.copy(changes.data.newValue, temp);
-		// 			temp.day = days[d];
-		// 			$scope.schedules.push(temp);
 
-		// 		}
-		// 		$scope.$apply();
-		// 	}
 		for(var item in obj.data) {
 			obj.data[item].day = obj.data[item].day.split(" ");
 			for(var day in obj.data[item].day) {
@@ -146,11 +275,6 @@ angular.module('schedulerApp')
 				$scope.schedules.push(temp);
 			}
 		}
-		console.log(obj.data);
-
-		// $scope.schedules = obj.data;
-		// $scope.$apply();
-		// console.log(obj);
 		$scope.$apply();
 
 	})
