@@ -19,6 +19,11 @@ angular.module('schedulerApp')
 	}
 
 
+	$scope.$watch(function() { return controlService.showForm }, function(nVal, oVal) {
+		$scope.showForm = nVal;
+	})
+
+
 
 	$scope.submit = function(){
 		scheduleService.getSchedules(function(obj){
@@ -59,7 +64,7 @@ angular.module('schedulerApp')
 	}
 
 	$scope.show = function() {
-		$scope.showForm = !$scope.showForm;
+		controlService.showForm = !controlService.showForm;
 	}
 
 	$scope.dshow = function() {
@@ -74,6 +79,10 @@ angular.module('schedulerApp')
 
 	$scope.showRating = false
 
+	$scope.hide = function(){
+		controlService.showDelete = false;
+		controlService.showForm = false;
+	}
 
 
 
@@ -99,8 +108,6 @@ angular.module('schedulerApp')
 		 		callback(null, name);
 		 		return;
 		 	}
-
-		 	// console.log(professorURLExtension);
 
 		 	var professorPageURL = 'http://www.ratemyprofessors.com' + professorURLExtension;
 
@@ -135,22 +142,10 @@ angular.module('schedulerApp')
 		 });
 	}
 
-	 // $scope.getRating = function(professorName) {
-
-	 // 	var rating = ratingService.getProfessorRating(professorName);
-
-	 // 	if(typeof rating !== 'undefined') {
-	 // 		console.log(rating);
-	 // 		$scope.rating = rating;
-	 // 		$scope.showRating = true;
-	 // 	}
-
-
-	 // }
-
 	$scope.$watch(function() { return controlService.showDelete }, function(nVal, oVal) {
 		$scope.showDelete = nVal;
 	})
+
 
 
 	$scope.delete = function(name) {
@@ -194,27 +189,6 @@ angular.module('schedulerApp')
 					}
 				})
 			}
-
-			// for(var item in $scope.schedules){
-			// 	getRating($scope.schedules[item].instructor,function(val) {
-			// 		console.log(val);
-			// 						console.log($scope.schedules[item]);
-			// 		if(typeof val === 'undefined') {
-			// 			$scope.schedules[item].rating = rating;
-			// 		}
-			// 		else {
-			// 			$scope.schedules[item].rating = val;
-			// 		}
-			// 		completed++;
-			// 		// if(completed === $scope.schedules.length - 1) {
-			// 		// 		$scope.$apply();
-			// 		// 	}
-			// 				// $scope.$applyAsync();
-			// 	})
-
-
-			// }
-
 			$scope.$apply();
 		}
 	})
