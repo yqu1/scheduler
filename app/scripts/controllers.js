@@ -1,8 +1,15 @@
 'use strict'
 
+function compare(a, b) {
+		var date1 = Date.parse('20 Aug 2000 ' + a.time.start);
+		var date2 = Date.parse('20 Aug 2000 ' + b.time.start);
+		return date1 > date2;
+}
+
 angular.module('schedulerApp')
 
 .controller('allController', ['$scope', 'scheduleService', 'controlService', function($scope, scheduleService, controlService){
+
 	$scope.showForm = false;
 
 	$scope.newClass = {
@@ -29,13 +36,6 @@ angular.module('schedulerApp')
 		$scope.showForm = nVal;
 	})
 
-	function compare(a, b) {
-		var date1 = Date.parse('20 Aug 2000 ' + a);
-		var date2 = Date.parse('20 Aug 2000 ' + b);
-		return date1 > date2;
-	}
-
-
 	$scope.submit = function(){
 
 		var isConflict = false;
@@ -47,7 +47,6 @@ angular.module('schedulerApp')
 			if(typeof obj.data === "undefined") {
 				obj.data = [];
 			}
-
 
 			angular.forEach($scope.newClass.day, function(value, key) {
 
@@ -112,7 +111,6 @@ angular.module('schedulerApp')
 }])
 
 .controller('bodyController', ['$scope', 'scheduleService', 'controlService', 'ratingService', function($scope, scheduleService, controlService, ratingService) {
-	
 
 	$scope.schedules = [];
 	$scope.showDelete = false;
@@ -211,13 +209,11 @@ angular.module('schedulerApp')
 	    		difficulty: "Not available",
 	    		infoURL: "http://www.ratemyprofessors.com/"
 	    	};
-			$scope.schedules = obj.data;
+			$scope.schedules = obj.data.sort(compare);
 			var completed = {count: 0};
 
 			for(var i = 0; i < $scope.schedules.length; i++) {
-				console.log($scope.schedules[i])
 				getRating($scope.schedules[completed.count].instructor, completed, function(val, name) {
-					console.log(name);
 					if(val === null) {
 						for(var item in $scope.schedules) {
 							if($scope.schedules[item].instructor === name) {
@@ -229,7 +225,6 @@ angular.module('schedulerApp')
 						for(var item in $scope.schedules) {
 							if($scope.schedules[item].instructor === name) {
 									$scope.schedules[item].rating = val;
-									console.log(val.infoURL);
 								}
 						}
 					}
@@ -287,6 +282,8 @@ angular.module('schedulerApp')
 
 	scheduleService.getSchedules(function(obj){
 
+		obj.data = obj.data.sort(compare);
+
 		for(var item in obj.data) {
 			obj.data[item].day = obj.data[item].day.split(" ");
 			for(var day in obj.data[item].day) {
@@ -303,7 +300,6 @@ angular.module('schedulerApp')
 
 			$scope.select = function(setTab){
 			$scope.tab = setTab;
-			console.log($scope.schedules);
 		}
 
 		$scope.isSelected = function(checkTab){
