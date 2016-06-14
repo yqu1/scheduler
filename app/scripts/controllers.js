@@ -4,10 +4,14 @@ angular.module('schedulerApp')
 
 .controller('allController', ['$scope', 'scheduleService', 'controlService', function($scope, scheduleService, controlService){
 	$scope.showForm = false;
+
 	$scope.newClass = {
 		name: "",
 		instructor: "",
-		time: "",
+		time: {
+			start: "0:00 AM",
+			end: "0:00 AM"
+		},
 		day: {
 			Mon: false,
 			Tue: false,
@@ -18,14 +22,24 @@ angular.module('schedulerApp')
 		location: ""
 	}
 
+	$('#start').timepicker();
+	$('#end').timepicker();
 
 	$scope.$watch(function() { return controlService.showForm }, function(nVal, oVal) {
 		$scope.showForm = nVal;
 	})
 
+	function compare(a, b) {
+		var date1 = Date.parse('20 Aug 2000 ' + a);
+		var date2 = Date.parse('20 Aug 2000 ' + b);
+		return date1 > date2;
+	}
 
 
 	$scope.submit = function(){
+
+		var isConflict = false;
+		var conflictClass = "";
 		scheduleService.getSchedules(function(obj){
 
 			var dayString = "";
@@ -34,12 +48,33 @@ angular.module('schedulerApp')
 				obj.data = [];
 			}
 
+
 			angular.forEach($scope.newClass.day, function(value, key) {
+
 				if(value === true) {
+					var filtered = obj.data.filter(function(val) {
+						return val.day.indexOf(key) !== -1;
+					})
+
+					filtered.map(function(obj){
+						if(obj.time.start < $scope.newClass.time.end && obj.time.end > $scope.newClass.time.start) {
+							isConflict = true;
+							
+							conflictClass += " " + obj.name;
+						}
+					})
 
 					dayString = dayString + " " + key;
 				}
 			})
+
+
+			if(isConflict) {
+				$("#alert").append('<div class="alert alert-warning" role="alert">This class is in conflict with' + conflictClass +'</div>')
+				setTimeout(function() {$(".alert").alert('close');}, 10000)
+				console.log("Class in conflict with" + conflictClass);
+				return;
+			}
 
 			$scope.newClass.day = dayString;
 
@@ -48,18 +83,22 @@ angular.module('schedulerApp')
 				$scope.newClass = {
 					name: "",
 					instructor: "",
-					time: "",
-					day: {
-						Mon: false,
-						Tue: false,
-						Wed: false,
-						Thu: false,
-						Fri: false
+					time: {
+						start: "0:00 AM",
+						end: "0:00 AM"
 					},
-					location: ""
+								day: {
+									Mon: false,
+									Tue: false,
+									Wed: false,
+									Thu: false,
+									Fri: false
+								},
+								location: ""
 				}
+			$scope.showForm = false;
 		})
-		$scope.showForm = false;
+		
 
 	}
 
@@ -74,6 +113,7 @@ angular.module('schedulerApp')
 
 .controller('bodyController', ['$scope', 'scheduleService', 'controlService', 'ratingService', function($scope, scheduleService, controlService, ratingService) {
 	
+
 	$scope.schedules = [];
 	$scope.showDelete = false;
 
@@ -256,6 +296,7 @@ angular.module('schedulerApp')
 				$scope.schedules.push(temp);
 			}
 		}
+
 		$scope.$apply();
 
 	})

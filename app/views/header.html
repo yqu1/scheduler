@@ -1,5 +1,7 @@
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
+          <div id = "alert">
+          </div>
             <div class="navbar-header">
                 <h2 class="navbar-text">All Classes</h2> 
             </div>
@@ -10,13 +12,23 @@
                              <form ng-show = "showForm">
                               <fieldset class="form-group">
                                 <label for="formGroupExampleInput">Class Name</label>
-                                <input type="text" ng-model = "newClass.name" class="form-control" id="formGroupExampleInput" placeholder="some class">
+
+                                <input required type="text" ng-model = "newClass.name" class="form-control" id="formGroupExampleInput" placeholder="some class">
                               </fieldset>
                               <fieldset class="form-group">
-                                <label for="formGroupExampleInput2">Time</label>
+                              <div class="input-group bootstrap-timepicker timepicker pull-left">
+                             <label for = "startTime"><b>Start:</b></label><input ng-model = "newClass.time.start" ()" id="start" type="text" class="form-control input-small">
+                               </div>
+                               <div class="input-group bootstrap-timepicker timepicker pull-left">
+                             <label for = "endTime"><b>End:</b></label><input ng-model = "newClass.time.end" id="end" type="text" class="form-control input-small">
+                               </div>
+                               </fieldset>
+                                <fieldset class = "formgroup">
+                                  <span>
                                 <label class="checkbox-inline">
                                   <input ng-model = "newClass.day.Mon" type="checkbox" id="inlineCheckbox1" value="option1"> Mon
                                 </label>
+
                                 <label class="checkbox-inline">
                                   <input ng-model = "newClass.day.Tue" type="checkbox" id="inlineCheckbox2" value="option2"> Tue
                                 </label>
@@ -29,16 +41,17 @@
                                 <label class="checkbox-inline">
                                   <input ng-model = "newClass.day.Fri" type="checkbox" id="inlineCheckbox3" value="option3"> Fri
                                 </label>
-                                <input ng-model = "newClass.time" type="text" ng-model = "newClass.time" class="form-control" id="formGroupExampleInput2" placeholder="start - end">
                               </fieldset>
                               <fieldset class="form-group">
                                 <label for="formGroupExampleInput2">Instructor</label>
-                                <input type="text" ng-model = "newClass.instructor" class="form-control" id="formGroupExampleInput2" placeholder="some instructor">
+                                <input required type="text" ng-model = "newClass.instructor" class="form-control" id="formGroupExampleInput2" placeholder="some instructor">
                               </fieldset>
                               <fieldset class="form-group">
                                 <label for="formGroupExampleInput2">Location</label>
                                 <input type="text" ng-model = "newClass.location" class="form-control" id="formGroupExampleInput2" placeholder="some location">
                               </fieldset>
+        
+                               
                               <span>
                                 <button type="submit" class="btn btn-primary" ng-click = "submit()">Submit</button>
                             </span>

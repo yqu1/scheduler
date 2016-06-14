@@ -28,11 +28,11 @@
 					  <li class="list-group-item" ng-repeat = "class in schedules | filter:filtText">
 					  	
 					  	 <span>
-					  	 	<h2>{{class.name}}</h2>
+					  	 	<h2><em>{{class.name}}</em></h2>
 					  	 </span>
-					  	 <p>Time: {{class.time}}</p>
-					  	 <p>Instructor: {{class.instructor}}</p>
-					  	 <p>Location: {{class.location}}</p>
+					  	 <p><b>Time:</b> {{class.time.start}} - {{class.time.end}}</p>
+					  	 <p><b>Instructor:</b> {{class.instructor}}</p>
+					  	 <p><b>Location:</b> {{class.location}}</p>
 					  </li>
 					</ul>
 

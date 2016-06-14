@@ -3,15 +3,15 @@
 					  <li class="list-group-item" ng-repeat = "class in schedules ">
 					  	<button type="button" ng-show = "showDelete" ng-click = "delete(class.name)" class="btn btn-default btn-sm pull-right"><span class="glyphicon glyphicon-minus"></span></button>
 					  	
-					  	 	<h2>{{class.name}}</h2>
+					  	 	<h2><em>{{class.name}}</em></h2>
 
-					  	 <p>Days: {{class.day}}</p>
-					  	 <p>Time: {{class.time}}</p>
-<p><a title='Overall: {{class.rating.overall}}
+					  	 <p><b>Days:</b> {{class.day}}</p>
+					  	 <p><b>Time:</b> {{class.time.start}} - {{class.time.end}}</p>
+<p><b>Instructor:</b><a title='Overall: {{class.rating.overall}}
 Would Take Again: {{class.rating.takeAgain}}
-Difficulty: {{class.rating.difficulty}}' data-html="true" rel="tooltip" ng-href="{{class.rating.infoURL}}">Instructor: {{class.instructor}}</a></p>
+Difficulty: {{class.rating.difficulty}}' data-html="true" rel="tooltip" ng-href="{{class.rating.infoURL}}"> {{class.instructor}}</a></p>
 					  
-					  	 <p>		Location: {{class.location}}</p>
+					  	 <p>		<b>Location:</b> {{class.location}}</p>
 					  </li>
 	</ul>
 
