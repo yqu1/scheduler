@@ -77,7 +77,11 @@ angular.module('schedulerApp')
 	$scope.schedules = [];
 	$scope.showDelete = false;
 
-	$scope.showRating = false
+	$scope.showRating = false;
+
+	$('.tooltip-demo.well').tooltip({
+  			selector: "a[rel=tooltip]"
+	})
 
 	$scope.hide = function(){
 		controlService.showDelete = false;
@@ -127,7 +131,7 @@ angular.module('schedulerApp')
 		    		rating.overall = $(responseXML).find('.breakdown-header:eq(0)').find('.grade').html().replace(/\s/g, "");
 		            rating.takeAgain = $(responseXML).find('.breakdown-header:eq(1)').find('.grade:eq(0)').html().replace(/\s/g, "");
 		            rating.difficulty = $(responseXML).find('.breakdown-header:eq(1)').find('.grade:eq(1)').html().replace(/\s/g, "");
-
+		            rating.infoURL = professorPageURL;
 
 		           	callback(rating, name);
 		    		
@@ -164,7 +168,8 @@ angular.module('schedulerApp')
 			var rating = {
 	    		overall: "Not available",
 	    		takeAgain: "Not available",
-	    		difficulty: "Not available"
+	    		difficulty: "Not available",
+	    		infoURL: "http://www.ratemyprofessors.com/"
 	    	};
 			$scope.schedules = obj.data;
 			var completed = {count: 0};
@@ -184,6 +189,7 @@ angular.module('schedulerApp')
 						for(var item in $scope.schedules) {
 							if($scope.schedules[item].instructor === name) {
 									$scope.schedules[item].rating = val;
+									console.log(val.infoURL);
 								}
 						}
 					}
@@ -200,7 +206,8 @@ angular.module('schedulerApp')
 							var rating = {
 					    		overall: "Not available",
 					    		takeAgain: "Not available",
-					    		difficulty: "Not available"
+					    		difficulty: "Not available",
+					    		infoURL: "http://www.ratemyprofessors.com/"
 					    	};
 				$scope.schedules = changes.data.newValue;
 				var completed = {count: 0};
