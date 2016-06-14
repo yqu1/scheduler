@@ -6,7 +6,7 @@ Clone the code and include the directory directly through chrome/window/extensio
 
 Usage:
 
-In this week view, + sign shows a form to add class, the class is automatically added to the day specified in the top tab. on clicking - sign shows a - button on every class, clicking on the - buttons delete the class. 
+In all class view, + sign shows a form to add class, the class is automatically added to the day specified in the top tab. on clicking - sign shows a - button on every class, clicking on the - buttons delete the class. Mouse over the instructor will show the instuctor rating pulled from ratemyprofessors.com, and click on the instructor name will take users to the ratemyprofessors page of the instructor (if could't find the instructor on ratemyprofessors the link would just take users to the main page).
 
 
 structure:

@@ -244,7 +244,7 @@ angular.module('schedulerApp')
 					    		difficulty: "Not available",
 					    		infoURL: "http://www.ratemyprofessors.com/"
 					    	};
-				$scope.schedules = changes.data.newValue;
+				$scope.schedules = changes.data.newValue.sort(compare);
 				var completed = {count: 0};
 
 				for(var i = 0; i < $scope.schedules.length; i++) {
