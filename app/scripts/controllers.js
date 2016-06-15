@@ -12,6 +12,14 @@ angular.module('schedulerApp')
 
 	$scope.showForm = false;
 
+	scheduleService.getSchedules(function(obj){
+		$scope.classnumber = obj.data.length;
+		$scope.$apply();
+	})
+
+	$scope.classnumber = 0;
+
+
 	$scope.newClass = {
 		name: "",
 		instructor: "",
