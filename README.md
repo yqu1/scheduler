@@ -30,8 +30,10 @@ structure:
 
 	-views
 
-		-main view: display all classes
+		-main view: allow user to enter school information so that later could pull info from the correct school
+		-all class view: display all classes
 		-week view: display everyday class in the week
+
 
 	-bower_components -- contains bootstrap modules
 
