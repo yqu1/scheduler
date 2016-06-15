@@ -32,7 +32,6 @@ structure:
 
 		-main view: display all classes
 		-week view: display everyday class in the week
-		-favourite view: display favourite class
 
 	-bower_components -- contains bootstrap modules
 
@@ -41,7 +40,5 @@ structure:
 	More Functionalities:
 
 	1. ability to schedule homework and exams as far as next week
-	2. ability to rate class -- need to migrate to cloud database or sth
+	2. ability to rate class
 		-ability to search for class according to subject/teacher and add/rate class
-		-ability to add personal favourite to the bigger database
-
