@@ -11,10 +11,23 @@ angular.module('schedulerApp', ['ui.router', 'ngDialog', 'ngResource'])
 			url: '/',
 			views: {
 				'header': {
+					templateUrl: 'views/mainheader.html'
+				},
+				'content': {
+					templateUrl: 'views/main.html',
+					controller: 'mainController'
+				}
+			}
+		})
+
+		.state('app.allschedule', {
+			url: 'allschedule',
+			views: {
+				'header@': {
 					templateUrl: 'views/header.html',
 					controller: 'allController'
 				},
-				'content': {
+				'content@': {
 					templateUrl: 'views/schedule.html',
 					controller: 'bodyController'
 				}

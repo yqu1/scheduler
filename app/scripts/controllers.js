@@ -56,7 +56,11 @@ angular.module('schedulerApp')
 					})
 
 					filtered.map(function(obj){
-						if(obj.time.start < $scope.newClass.time.end && obj.time.end > $scope.newClass.time.start) {
+						var s1 = Date.parse('20 Aug 2000 ' + obj.time.start);
+						var e1 = Date.parse('20 Aug 2000 ' + obj.time.end);
+						var s2 = Date.parse('20 Aug 2000 ' + $scope.newClass.time.start);
+						var e2 = Date.parse('20 Aug 2000 ' + $scope.newClass.time.end);
+						if(s1 < e2 && e1 > s2) {
 							isConflict = true;
 							
 							conflictClass += " " + obj.name;
@@ -116,6 +120,7 @@ angular.module('schedulerApp')
 	$scope.showDelete = false;
 
 	$scope.showRating = false;
+	var schoolname;
 
 	$('.tooltip-demo.well').tooltip({
   			selector: "a[rel=tooltip]"
@@ -128,11 +133,12 @@ angular.module('schedulerApp')
 
 
 
-	 function getRating(name, completed, callback) {
+	 function getRating(name, completed, schoolName, callback) {
 	 	completed.count += 1;
-	 	var rmpsearch = 'http://www.ratemyprofessors.com/search.jsp?queryBy=teacherName&schoolName=college+of+william+and+mary&queryoption=HEADER&query=PROFESSORNAME&facetSearch=true';
+	 	var rmpsearch = 'http://www.ratemyprofessors.com/search.jsp?queryBy=teacherName&schoolName=UNIVERSITY&queryoption=HEADER&query=PROFESSORNAME&facetSearch=true';
 		 var URLprofessorName = name.replace(/ /g,'+').replace(/,/g,'');
-		 rmpsearch = rmpsearch.replace('PROFESSORNAME',URLprofessorName);
+		 var URLschoolName = schoolName.replace(/ /g,'+').replace(/,/g,'');
+		 rmpsearch = rmpsearch.replace('PROFESSORNAME',URLprofessorName).replace('UNIVERSITY', URLschoolName);
 		 ratingService.getProfessorExtension(rmpsearch, name, function(data) {
 		 	var responseXML, ratings;
 
@@ -202,6 +208,7 @@ angular.module('schedulerApp')
 
 	scheduleService.getSchedules(function(obj){
 			// chrome.storage.sync.clear();
+			schoolname = obj.schoolname;
 		if(typeof obj.data !== "undefined") {
 			var rating = {
 	    		overall: "Not available",
@@ -213,7 +220,7 @@ angular.module('schedulerApp')
 			var completed = {count: 0};
 
 			for(var i = 0; i < $scope.schedules.length; i++) {
-				getRating($scope.schedules[completed.count].instructor, completed, function(val, name) {
+				getRating($scope.schedules[completed.count].instructor, completed, obj.schoolname, function(val, name) {
 					if(val === null) {
 						for(var item in $scope.schedules) {
 							if($scope.schedules[item].instructor === name) {
@@ -245,11 +252,12 @@ angular.module('schedulerApp')
 					    		infoURL: "http://www.ratemyprofessors.com/"
 					    	};
 				$scope.schedules = changes.data.newValue.sort(compare);
+				console.log(changes);
 				var completed = {count: 0};
 
 				for(var i = 0; i < $scope.schedules.length; i++) {
 					console.log($scope.schedules[i])
-					getRating($scope.schedules[completed.count].instructor, completed, function(val, name) {
+					getRating($scope.schedules[completed.count].instructor, completed, schoolname, function(val, name) {
 						console.log(name);
 						if(val === null) {
 							for(var item in $scope.schedules) {
@@ -333,7 +341,31 @@ angular.module('schedulerApp')
 			};
 		}
 
+}])
+
+.controller('mainController', ['$scope', 'scheduleService', '$location', function($scope, scheduleService, $location){
+	$scope.schoolname = "";
 
 
+
+	scheduleService.getSchedules(function(obj){
+		if(typeof obj.schoolname !== undefined){
+			console.log("shit")
+			$scope.schoolname = obj.schoolname;
+			$scope.$apply()
+		}
+	})
+
+	$scope.submit = function(){
+
+		scheduleService.getSchedules(function(obj){
+			console.log("fuck")
+			obj.schoolname = $scope.schoolname;
+			chrome.storage.sync.set(obj);
+		})
+
+		$location.path('/allschedule');
+
+	}
 }])
 

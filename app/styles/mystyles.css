@@ -57,6 +57,7 @@ body {
 	padding-top: 15px;
 }
 
-.rating {
-	left: 10px;
+#schoolname{
+	position: fixed; left: 25%; bottom: 50%;
+
 }
