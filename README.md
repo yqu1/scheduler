@@ -6,7 +6,14 @@ Clone the code and include the directory directly through chrome/window/extensio
 
 Usage:
 
-In all class view, + sign shows a form to add class, the class is automatically added to the day specified in the top tab. on clicking - sign shows a - button on every class, clicking on the - buttons delete the class. Mouse over the instructor will show the instuctor rating pulled from ratemyprofessors.com, and click on the instructor name will take users to the ratemyprofessors page of the instructor (if could't find the instructor on ratemyprofessors the link would just take users to the main page).
+In main view, user could enter school information so that later when add scheduled classes the instructor info would be pulled correctly from ratemyprofessors.
+
+In all class view, + sign shows a form to add class, the class is automatically added to the day specified in the top tab. on clicking - sign shows a - button on every class, clicking on the - buttons delete the class. When adding classes, if there is a conflict with a existing class the form will display an alert that tells users which classes are in conflict. Added classes are sorted according to starting time.
+
+Mouse over the instructor will show the instuctor rating pulled from ratemyprofessors.com, and click on the instructor name will take users to the ratemyprofessors page of the instructor (if could't find the instructor on ratemyprofessors the link would just take users to the main page).
+
+
+
 
 
 structure:
