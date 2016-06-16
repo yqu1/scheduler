@@ -2,7 +2,7 @@
 
 Install: 
 
-Clone the code and include the directory directly through chrome/window/extension/load extensions
+Clone the code. Goto chrome://chrome/extensions/, click load unpacked extension and navigate to the directory of the extension files and select the directory. Make sure developer mode is on.
 
 Usage:
 
