@@ -12,13 +12,6 @@ angular.module('schedulerApp')
 
 	$scope.showForm = false;
 
-	scheduleService.getSchedules(function(obj){
-		$scope.classnumber = obj.data.length;
-		$scope.$apply();
-	})
-
-	$scope.classnumber = 0;
-
 
 	$scope.newClass = {
 		name: "",
@@ -358,7 +351,6 @@ angular.module('schedulerApp')
 
 	scheduleService.getSchedules(function(obj){
 		if(typeof obj.schoolname !== undefined){
-			console.log("shit")
 			$scope.schoolname = obj.schoolname;
 			$scope.$apply()
 		}
@@ -367,7 +359,6 @@ angular.module('schedulerApp')
 	$scope.submit = function(){
 
 		scheduleService.getSchedules(function(obj){
-			console.log("fuck")
 			obj.schoolname = $scope.schoolname;
 			chrome.storage.sync.set(obj);
 		})
